@@ -60,8 +60,10 @@ public class PlayerController : MonoBehaviour
             {
                 // Iniciar el deslizamiento
                 isSliding = true;
-                playerRb.height /= 2f;
-                playerRb.center = new Vector3(playerRb.center.x, playerRb.center.y / 2f, playerRb.center.z);
+                playerRb.useGravity = false;
+                playerRb.transform.localScale = new Vector3(playerRb.transform.localScale.x, playerRb.transform.localScale.y / 2f, playerRb.transform.localScale.z);
+                playerRb.useGravity = true;
+                playerRb.centerOfMass = new Vector3(playerRb.centerOfMass.x, playerRb.centerOfMass.y / 2f, playerRb.centerOfMass.z);
     
                 /*doubleSpeed = true;
                 playerAnim.SetFloat("Speed_Multiplier", 1.5f);
@@ -75,8 +77,10 @@ public class PlayerController : MonoBehaviour
             {
                 // Terminar el deslizamiento
                 isSliding = false;
-                playerRb.height *= 2f;
-                playerRb.center = new Vector3(playerRb.center.x, playerRb.center.y * 2f, playerRb.center.z);
+                playerRb.useGravity = false;
+                playerRb.transform.localScale = new Vector3(playerRb.transform.localScale.x, playerRb.transform.localScale.y * 2f, playerRb.transform.localScale.z);
+                playerRb.useGravity = true;
+                playerRb.centerOfMass = new Vector3(playerRb.centerOfMass.x, playerRb.centerOfMass.y * 2f, playerRb.centerOfMass.z);
 
                 /*doubleSpeed = false;
                 playerAnim.SetFloat("Speed_Multiplier", 1.5f);
