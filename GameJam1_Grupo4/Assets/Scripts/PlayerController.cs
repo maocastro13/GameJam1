@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
-            playerAnim.SetTrigger("mixamo.com");
+            //playerAnim.SetTrigger("mixamo.com");
             /*dirtParticle.Stop();
             playerAudio.PlayOneShot(jumpSound, 1.0f);*/
         }
