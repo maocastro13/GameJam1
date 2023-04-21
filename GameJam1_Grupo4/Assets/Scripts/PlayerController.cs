@@ -42,8 +42,8 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
-            /*playerAnim.SetTrigger("Jump_trig");
-            dirtParticle.Stop();
+            playerAnim.SetTrigger("mixamo.com");
+            /*dirtParticle.Stop();
             playerAudio.PlayOneShot(jumpSound, 1.0f);*/
         }
         /*else if (Input.GetKeyDown(KeyCode.Space) && !isOnGround && doubleJumpPowerUp && !hasDoubleJump)
