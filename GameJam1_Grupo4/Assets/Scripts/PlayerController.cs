@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
+        playerAnim = GetComponent<Animator>();
         Physics.gravity *= gravityModifier;
     }
 
@@ -42,9 +43,9 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
-            //playerAnim.SetTrigger("mixamo.com");
-            /*dirtParticle.Stop();
-            playerAudio.PlayOneShot(jumpSound, 1.0f);*/
+            playerAnim.SetBool("isJumping", true);
+           // dirtParticle.Stop();
+           // playerAudio.PlayOneShot(jumpSound, 1.0f);
         }
         /*else if (Input.GetKeyDown(KeyCode.Space) && !isOnGround && doubleJumpPowerUp && !hasDoubleJump)
         {
@@ -60,10 +61,11 @@ public class PlayerController : MonoBehaviour
             {
                 // Iniciar el deslizamiento
                 isSliding = true;
-                playerRb.useGravity = false;
+                playerAnim.SetBool("Sliding", true);
+                /*playerRb.useGravity = false;
                 playerRb.transform.localScale = new Vector3(playerRb.transform.localScale.x, playerRb.transform.localScale.y / 2f, playerRb.transform.localScale.z);
                 playerRb.useGravity = true;
-                playerRb.centerOfMass = new Vector3(playerRb.centerOfMass.x, playerRb.centerOfMass.y / 2f, playerRb.centerOfMass.z);
+                playerRb.centerOfMass = new Vector3(playerRb.centerOfMass.x, playerRb.centerOfMass.y / 2f, playerRb.centerOfMass.z);*/
     
                 /*doubleSpeed = true;
                 playerAnim.SetFloat("Speed_Multiplier", 1.5f);
@@ -77,10 +79,11 @@ public class PlayerController : MonoBehaviour
             {
                 // Terminar el deslizamiento
                 isSliding = false;
-                playerRb.useGravity = false;
+                playerAnim.SetBool("Sliding", false);
+                /*playerRb.useGravity = false;
                 playerRb.transform.localScale = new Vector3(playerRb.transform.localScale.x, playerRb.transform.localScale.y * 2f, playerRb.transform.localScale.z);
                 playerRb.useGravity = true;
-                playerRb.centerOfMass = new Vector3(playerRb.centerOfMass.x, playerRb.centerOfMass.y * 2f, playerRb.centerOfMass.z);
+                playerRb.centerOfMass = new Vector3(playerRb.centerOfMass.x, playerRb.centerOfMass.y * 2f, playerRb.centerOfMass.z);/*
 
                 /*doubleSpeed = false;
                 playerAnim.SetFloat("Speed_Multiplier", 1.5f);
@@ -95,6 +98,8 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
+            playerAnim.SetBool("isJumping",false);
+            //playerAnim.SetBool("Sliding",false);
             /*dirtParticle.Play();
             hasDoubleJump = false;*/
         } 
