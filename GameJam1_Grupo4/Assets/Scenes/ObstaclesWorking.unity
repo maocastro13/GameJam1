@@ -5330,11 +5330,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclePrefabs:
-  - {fileID: 8467189444537375850, guid: 8d56df48ed81c1b449ca9cfffba45f8b, type: 3}
-  - {fileID: 5709256474784608637, guid: 8594045a8754daf4584cc5926db77282, type: 3}
-  - {fileID: 4567602360426122554, guid: e48d279e826747a449dfbd4039855e41, type: 3}
-  - {fileID: 2316841809378881533, guid: 95f98768d5a92f2478e3c11ca502f729, type: 3}
-  - {fileID: 1353065404779973578, guid: a1dea115a2f600346bcffd8eb06ea305, type: 3}
+  - {fileID: 4401291758002412314, guid: 81c121afe5e0471448cf2a297b07ee9d, type: 3}
+  - {fileID: 7952457122210004527, guid: 290bd3336b553f146b60cc8c8055e9fa, type: 3}
+  - {fileID: 8282243574452794998, guid: 35e95c38f9575fc47a8c91d31596cdff, type: 3}
+  - {fileID: 2960873671993585724, guid: 59a215098bebd344cb4b37e20e218881, type: 3}
+  - {fileID: 1767179825938915692, guid: 633b3e1b7645f0d449203f02106e7b7e, type: 3}
+  - {fileID: 7314995706809277075, guid: c118223ad5884fa4d9773f1a24fbe849, type: 3}
+  - {fileID: 2306692071481237904, guid: b0c2a5c70093ca54fb23d66ce07dc402, type: 3}
+  - {fileID: 7417962649666788067, guid: c3a683e4104942942ac12cb8d375715e, type: 3}
   zSpawnPos: 15
   xRangePos: 4.7
 --- !u!1001 &638322315
@@ -6897,11 +6900,12 @@ MonoBehaviour:
   - {fileID: 1170792377085216565, guid: 155e2469b0fffbb49a9dd756a7c4ecdf, type: 3}
   - {fileID: 1170792377085216565, guid: 155e2469b0fffbb49a9dd756a7c4ecdf, type: 3}
   rugPrefabs:
-  - {fileID: 4006491088431565110, guid: b245f9cbe1c0fe54aa8aba0ba5e26003, type: 3}
-  - {fileID: 5660746543866054339, guid: e78c374a27a1bef41be63f8ccdba2cf6, type: 3}
+  - {fileID: 1391582289931763192, guid: fe5739b6bfbc41b439bb182d2159b620, type: 3}
+  - {fileID: 7287459571141111209, guid: 20bc5be3ec5e44944a6722308d2736d2, type: 3}
+  - {fileID: 1946451915424554839, guid: 078a59d6b0ef46d4894d24e5faab6fd3, type: 3}
+  - {fileID: 662640674971861203, guid: 995080d9630aff240bc981bdd151349f, type: 3}
   deepDistance: 20
   wallDistance: 5
-  rugXRange: 3
 --- !u!4 &1974853106
 Transform:
   m_ObjectHideFlags: 0
