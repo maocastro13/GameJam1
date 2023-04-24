@@ -6,7 +6,14 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject[] obstaclePrefabs;
     public float zSpawnPos = 15;
-    public float xRangePos = 4.3f;
+
+
+    // Each type of obstacle has its own right bound because of size and pivot location
+    private float xLeftBound = -4.6f;
+    private float xAirRightBound = 3.2f;
+    private float xMidRightBound = 3.2f;
+    private float xBigRightBound = 2.0f;
+
     private float spawnDelay = 1;
     private float spawnRatio = 3;
 
@@ -23,19 +30,31 @@ public class SpawnManager : MonoBehaviour
     }
     void SpawnObstacle()
     {
-        int spawnerIndex = Random.Range(0, 4);
+        GameObject obstacleToSpawn = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
         Vector3 SpawnPos;
-        if (spawnerIndex == 0)
+        if (obstacleToSpawn.name.Contains("ObstacleAir"))
         {
-            SpawnPos = new Vector3(Random.Range(-xRangePos, xRangePos-3), 2, zSpawnPos);
+            //Debug.Log("AirObs");
+
+            SpawnPos = new Vector3(Random.Range(xLeftBound, xAirRightBound),Random.Range(0.8f, 1.5f), zSpawnPos);
+
+        }
+        else if (obstacleToSpawn.name.Contains("ObstacleMid"))
+        {
+            //Debug.Log("MidObs");
+
+            SpawnPos = new Vector3(Random.Range(xLeftBound, xMidRightBound), 0, zSpawnPos);
 
         }
         else 
+        //(obstacleToSpawn.name.Contains("Big"))
         {
-            SpawnPos = new Vector3(Random.Range(-xRangePos, xRangePos-4),0, zSpawnPos);
+
+            //Debug.Log("BigObs");
+            SpawnPos = new Vector3(Random.Range(xLeftBound, xBigRightBound), 0, zSpawnPos);
 
         }
 
-        Instantiate<GameObject>(obstaclePrefabs[spawnerIndex], SpawnPos, transform.rotation);
+        Instantiate<GameObject>(obstacleToSpawn, SpawnPos, obstacleToSpawn.transform.rotation);
     }
 }

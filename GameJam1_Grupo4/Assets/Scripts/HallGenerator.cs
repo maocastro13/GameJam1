@@ -9,10 +9,9 @@ public class HallGenerator : MonoBehaviour
     private float spawnDelay = 0;
     private float spawnRatio = 0.37f;
 
-
-    [SerializeField] float deepDistance=80;
-    [SerializeField] float wallDistance=5;
-    [SerializeField] float rugXRange=3;
+    //deep and width distance of the hall
+    private float deepDistance=25;
+    private float wallDistance=5;
 
 
     // Start is called before the first frame update
@@ -40,6 +39,7 @@ public class HallGenerator : MonoBehaviour
     {
 
         //Generate random rug
-        Instantiate<GameObject>(rugPrefabs[Random.Range(0, rugPrefabs.Length)], new Vector3(Random.Range(-rugXRange,rugXRange), 0, deepDistance), Quaternion.Euler(0f, 0f, 0f));
+        GameObject randomRug=rugPrefabs[Random.Range(0, rugPrefabs.Length)];
+        Instantiate<GameObject>(randomRug, new Vector3(-1.86f, 0,deepDistance), randomRug.transform.rotation);
     }
 }
