@@ -10,7 +10,7 @@ public class HallGenerator : MonoBehaviour
     private float spawnRatio = 0.37f;
 
     //deep and width distance of the hall
-    private float deepDistance=25;
+    private float deepDistance=22;
     private float wallDistance=5;
 
 

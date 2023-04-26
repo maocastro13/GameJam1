@@ -10,15 +10,15 @@ public class PlayerController : MonoBehaviour
     public GameObject[] lifesSprites;
 
     private float horizontalInput;
-    private float speed = 20.0f;
-    private float xRange = 2.70f;
+    private float horizontalSpeed = 20.0f;
+    private float xRange = 4f;
     public float jumpForce;
     public float gravityModifier;
     public bool isOnGround = true;
     public bool isSliding = false;
     public bool gameOver = false;
 
-    private int lifes = 2;
+    private int lifes = 3;
     private int indexLifesSprites = 0;
 
     void Start()
@@ -33,31 +33,31 @@ public class PlayerController : MonoBehaviour
         if (!gameOver)
         {
             // Check for left and right bounds
-            if (transform.position.x < -xRange)
+            if (transform.position.x <= -xRange)
             {
                 transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
             }
 
-            if (transform.position.x > xRange)
+            if (transform.position.x >= xRange)
             {
                 transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
             }
 
             // Player movement left to right
             horizontalInput = Input.GetAxis("Horizontal");
-            transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
+            transform.Translate(Vector3.right * Time.deltaTime * horizontalSpeed * horizontalInput);
 
-            if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && isOnGround && !gameOver)
             {
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
             }
 
-            if (Input.GetButton("Sliding") && isOnGround)
+            if ((Input.GetButton("Sliding") || Input.GetKeyDown(KeyCode.DownArrow)) && isOnGround)
             {
                 if (!isSliding)
                 {
-                    // Iniciar el deslizamiento
+                    // Starts Sliding
                     isSliding = true;
                     playerAnim.SetBool("Slide", true);
                 }
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (isSliding)
                 {
-                    // Terminar el deslizamiento
+                    // Ends Sliding
                     isSliding = false;
                     playerAnim.SetBool("Slide", false);
                 }
@@ -80,20 +80,35 @@ public class PlayerController : MonoBehaviour
         {
             isOnGround = true;
         }
-        if (collision.gameObject.CompareTag("Obstacle"))
+        
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Colission with: " + other.gameObject.name);
+        if (other.gameObject.CompareTag("Obstacle"))
         {
-            if (lifes > 0)
+            //Disable isTrigger from Obstacle object. Player cannot get damaged by the same object twice.
+            other.enabled = false;
+
+            //If the player is sliding while triggers Enter with an Air object, it doesn't lose a life
+            if (other.gameObject.name.Contains("ObstacleAir") && playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Slide"))
             {
-                lifesSprites[indexLifesSprites].SetActive(false);
+                Debug.Log("Avoided: " + other.gameObject.name);
+
+            }
+            else {
+                Debug.Log("Damaged by: " + other.gameObject.name);
+                
                 lifes--;
+                lifesSprites[indexLifesSprites].SetActive(false);
                 indexLifesSprites++;
             }
-            else
-            {
-                gameOver = true;
-                Debug.Log("Game Over!");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
+        }
+        if (lifes <= 0)
+        {
+            gameOver = true;
+            Debug.Log("Game Over!");
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 }

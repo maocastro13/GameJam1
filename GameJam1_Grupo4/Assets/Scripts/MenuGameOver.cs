@@ -8,7 +8,7 @@ public class MenuGameOver : MonoBehaviour
     public GameObject botonPlay;
     public GameObject menuGameOver;
     //private bool pausaEscape= false; //pausar con la tecla scape
-    private PlayerController playerControlScript;
+    //private PlayerController playerControlScript;
 
     /*private void Start()
     {
@@ -49,16 +49,20 @@ public class MenuGameOver : MonoBehaviour
     public void reiniciar()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("CoreGameMain");
+        SceneManager.LoadScene("CoreGameScene");
     } 
     public void cerrar()
     {
         Debug.Log("Cerrando...");
-        Application.Quit();
+        SceneManager.LoadScene("MainMenuScene");
+
+        //Only active next line if Game is built to App:
+        //Application.Quit();
+
     }
 
     public void GameOver()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        SceneManager.LoadScene("GameOverScene");
     }
 }

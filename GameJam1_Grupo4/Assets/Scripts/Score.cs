@@ -19,6 +19,6 @@ public class Score : MonoBehaviour
     void Update()
     {
         puntos += Time.deltaTime;
-        textMesh.text = puntos.ToString("0");
+        textMesh.text = "Score: "+(puntos*100).ToString("0");
     }
 }

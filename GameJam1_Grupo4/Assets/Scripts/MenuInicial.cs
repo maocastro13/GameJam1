@@ -7,12 +7,13 @@ public class MenuInicial : MonoBehaviour
 {
     public void play()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("CoreGameScene");
     }
     
     public void exit()
     {
         Debug.Log("Salir...");
-        Application.Quit();
+        //Only active next line if Game is built to App:
+        //Application.Quit();
     }
 }
